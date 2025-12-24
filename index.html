@@ -14,7 +14,6 @@
         
         /* Custom Colors - Vivid Pop Multitone Theme (6 colors + BG) */
         :root {
-            /* 1. ベースカラーを暗いテーマに戻す */
             --color-primary-cyan: #00FFFF; /* Primary Neon Cyan (Anime Verse Title) */
             --color-secondary-magenta: #FF00FF; /* Accent 1 Neon Magenta */
             --color-accent-green: #00FF00; /* Accent 2 Neon Green */
@@ -22,30 +21,26 @@
             --color-accent-orange: #FF8800; /* Accent 4 Neon Orange */
             --color-accent-purple: #9900FF; /* Accent 5 Neon Purple */
             
-            /* 2. 背景色を黒っぽく戻す */
             --color-bg-light: #FFFFFF; /* White for content sections (Map Background) */
-            --color-bg-dark: #111111; /* DEEPER Charcoal Gray (Base) - 戻す */
-            --color-bg-medium: #1A1A1A; /* Darker Gray for modal/header base - 戻す */
+            --color-bg-dark: #111111; /* DEEPER Charcoal Gray (Base) */
+            --color-bg-medium: #1A1A1A; /* Darker Gray for modal/header base */
             --color-bg-nav: #B0FFFF; 
             
-            /* 3. テキスト色を明るく戻す */
-            --color-text-dark: #1A1A1A; /* Dark Text (主に明るい背景上) */
-            --color-text-light: #F0F0F0; /* Light Text (主に暗い背景上) - 戻す */
+            --color-text-dark: #1A1A1A; /* Dark Text */
+            --color-text-light: #F0F0F0; /* Light Text */
             
-            /* 4. 新しい強調色 */
             --color-accent-new-cyan: #60FFFF; /* 元のシアンの代わり */
-            --color-lavender: #E6E6FA; /* ラベンダー色（メニューバー、フッター、Homeセクション内区切り背景） */
+            --color-lavender: #E6E6FA; /* ラベンダー色（薄紫） */
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            color: var(--color-text-light); /* Light text on dark background (Hero/Body) */
-            /* UPDATED BACKGROUND: Deep Charcoal Gray base with subtle geometric pattern overlay */
+            color: var(--color-text-light); 
             background-color: var(--color-bg-dark); 
             background-image: 
-                radial-gradient(circle at 1px 1px, #333333 1px, transparent 0), /* Subtle noise */
-                linear-gradient(90deg, #2A2A2A 1px, transparent 0), /* Vertical grid */
-                linear-gradient(180deg, #2A2A2A 1px, transparent 0); /* Horizontal grid */
+                radial-gradient(circle at 1px 1px, #333333 1px, transparent 0),
+                linear-gradient(90deg, #2A2A2A 1px, transparent 0),
+                linear-gradient(180deg, #2A2A2A 1px, transparent 0);
             background-size: 20px 20px; 
         }
 
@@ -64,11 +59,9 @@
         .text-dark { color: var(--color-text-dark); }
         .text-light { color: var(--color-text-light); }
         
-        /* カスタムシアンカラーのユーティリティ */
         .text-new-cyan { color: var(--color-accent-new-cyan); }
         .border-new-cyan { border-color: var(--color-accent-new-cyan); }
         
-        /* Logo Style */
         .logo-large {
             font-family: 'Orbitron', sans-serif;
             font-size: 2rem; 
@@ -82,7 +75,6 @@
             }
         }
 
-        /* Hero Section Title Style (ANIME VERSE) */
         .hero-title {
             font-family: 'Orbitron', sans-serif;
             font-weight: 900;
@@ -105,55 +97,42 @@
             text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
         }
 
-        /* ======================================= */
-        /* Header Style (Lavender Background) */
-        /* ======================================= */
         #header {
-            background-color: var(--color-lavender) !important; /* ラベンダーに設定 */
-            color: var(--color-text-dark); /* テキスト色をダークに */
+            background-color: var(--color-lavender) !important;
+            color: var(--color-text-dark);
             z-index: 50;
         }
-        /* Navigation Links: テキスト色をダークに設定 */
         #header .nav-link, 
         #header .logo-large {
             color: var(--color-text-dark) !important;
         }
-        /* ロゴのFEST部分（magenta）はそのまま維持 */
         #header .logo-large .text-magenta {
             color: var(--color-secondary-magenta) !important;
         }
-        /* ホバー色は元のシアンに戻す */
         #header .hover\:text-cyan:hover {
             color: var(--color-primary-cyan) !important;
         }
-        /* Mobile Menu Link Color */
         #mobile-menu {
-            background-color: var(--color-lavender) !important; /* ラベンダーに設定 */
+            background-color: var(--color-lavender) !important;
         }
         #mobile-menu a, #mobile-menu button {
             color: var(--color-text-dark) !important;
         }
-        /* Fix visibility of links inside the dark mobile event submenu (修正) */
         #mobile-event-submenu a {
-            color: var(--color-text-light) !important; /* ライトカラーに変更 */
+            color: var(--color-text-light) !important;
         }
-        /* Mobile menu links (lavender BG) hover */
-        #mobile-menu .hover\:bg-gray-800:hover { /* モバイルメニューのホバーをライトに変更 */
+        #mobile-menu .hover\:bg-gray-800:hover {
             background-color: #DCDCDC !important;
         }
         
-        /* NEW CSS: Header Icon Size Adjustment */
         .header-logo-icon {
-            /* 1. ロゴアイコンを小さくする */
             width: 32px; 
             height: 32px; 
-            /* 2. 枠線の色はダークに維持 */
             border-color: var(--color-text-dark) !important;
         }
 
-        /* ドロップダウンメニュー: デフォルト非表示、ホバー時のみ表示 */
         .dropdown-menu {
-            display: none; /* <-- デフォルトで非表示に設定 */
+            display: none;
             transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
             transform: translateY(-10px);
             opacity: 0;
@@ -161,23 +140,19 @@
             z-index: 100;
         }
         .group:hover .dropdown-menu {
-            display: block; /* <-- ホバー時に表示 */
+            display: block;
             transform: translateY(0);
             opacity: 1;
             pointer-events: auto;
         }
         
-        /* ======================================= */
-        /* Footer Style (Lavender Background) */
-        /* ======================================= */
         footer {
-            background-color: var(--color-lavender) !important; /* ラベンダーに設定 */
+            background-color: var(--color-lavender) !important;
             border-top: 3px solid var(--color-primary-cyan);
         }
         footer .text-light, footer .text-gray-400 {
-            color: var(--color-text-dark) !important; /* フッターのベーステキストをダークに */
+            color: var(--color-text-dark) !important;
         }
-        /* Footer Contact Protocol: 強調色を新しいシアンに */
         footer .text-new-cyan {
             color: var(--color-accent-new-cyan) !important;
         }
@@ -185,73 +160,26 @@
              color: var(--color-accent-new-cyan) !important;
         }
 
-        /* ======================================= */
-        /* Content Section Styles (ストライプ調整) */
-        /* ======================================= */
-
-        /* 全てのセクションの基本背景は Dark に統一 */
-        #about-page, #events-page, #competition-page, #vendors-page, #tickets-page, #news-page {
-            background-color: var(--color-bg-dark) !important;
-            color: var(--color-text-light) !important;
-            /* 境界線のスタイルを統一 */
-            border-color: var(--color-primary-cyan); 
-        }
-
-        /* Mediaセクションの背景は Lavender に設定 (ストライプ調整のため) */
-        /* Mediaも黒に戻すため、カスタムスタイルを削除 */
-        #media-page {
+        #about-page, #events-page, #competition-page, #vendors-page, #tickets-page, #news-page, #media-page {
             background-color: var(--color-bg-dark) !important;
             color: var(--color-text-light) !important;
             border-color: var(--color-primary-cyan); 
         }
 
-        /* Homeセクション内の要素の色調整 */
         .home-content-lavender-bg {
             background-color: var(--color-lavender);
             color: var(--color-text-dark) !important;
         }
-        .home-content-dark-bg {
-            background-color: var(--color-bg-dark);
-            color: var(--color-text-light) !important;
-        }
         
-        /* Homeセクションのラベンダー部分のテキスト色上書き */
         #home-page .home-content-lavender-bg * {
             color: var(--color-text-dark) !important;
         }
-        #home-page .home-content-lavender-bg .text-magenta {
-            color: var(--color-secondary-magenta) !important;
-        }
-        #home-page .home-content-lavender-bg .text-green {
-            color: var(--color-accent-green) !important;
-        }
 
-        /* Mediaセクション内のテキスト色上書き (黒背景上なのでライトに戻す) */
-        #media-page * { 
-            color: var(--color-text-light) !important; 
-        }
-        #media-page .text-cyan { color: var(--color-primary-cyan) !important; }
-        #media-page .text-magenta { color: var(--color-secondary-magenta) !important; }
-        #media-page .text-yellow { color: var(--color-accent-yellow) !important; }
-        #media-page .text-green { color: var(--color-accent-green) !important; }
-        #media-page .bg-medium * { color: var(--color-text-light) !important; } /* カード内の色はライト維持 */
-        
-        /* Cards in Dark Sections: テキスト色をライトに統一 */
         #content-area .bg-medium *,
         #content-area .bg-dark * {
             color: var(--color-text-light) !important;
         }
         
-        /* Hero Section Map Box (Map BG to White) */
-        .map-container-bg {
-             /* マップコンテナの背景を白に設定 */
-            background-color: var(--color-bg-light) !important; 
-            border: 3px solid var(--color-accent-purple);
-            box-shadow: 0 0 10px rgba(153, 0, 255, 0.5); /* シャドウを抑える */
-            transition: all 0.3s ease;
-        }
-
-        /* Scroll Reveal (for visual appeal) */
         .scroll-reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -263,7 +191,6 @@
             transform: translateY(0);
         }
         
-        /* Custom Height for About Banner (Logo version) */
         .about-logo-size {
             width: 14rem;
             height: 14rem;
@@ -275,32 +202,30 @@
             }
         }
         
-        /* Media Section Icons (for uniform font size) */
         .media-caption {
-            /* サイズを統一し、確実にボールドにする */
             font-size: 1.1rem !important; 
             font-weight: 900 !important;
             text-align: center;
             margin-top: 0.5rem;
         }
 
-        /* NEW: CTA Section with Image Background */
-        .cta-image-bg {
+        /* --- BACKGROUND WITH IMAGE & OVERLAY --- */
+        .image-overlay-bg {
             position: relative;
-            background-image: url('images/cta-bg.jpg'); /* 背景画像名 */
+            background-image: url('images/cta-bg.jpg'); 
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
-        /* ダークオーバーレイ（文字を読みやすくするため） */
-        .cta-image-bg::before {
+        /* 文字を読みやすくするための影（オーバーレイ） */
+        .image-overlay-bg::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75));
             z-index: 1;
         }
-        .cta-content {
+        .overlay-content {
             position: relative;
             z-index: 2;
         }
@@ -309,7 +234,7 @@
 </head>
 <body class="text-light">
 
-    <!-- Message Box (Used for CTA confirmation only) -->
+    <!-- Message Box -->
     <div id="message-box" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-[1000] p-4 hidden" onclick="closeMessage()">
         <div class="rounded-xl shadow-2xl transform transition-all duration-300 scale-95 border-4 border-cyan page-modal bg-medium" id="message-content-box" onclick="event.stopPropagation()">
             <div id="message-text-content" class="p-8 text-center text-light">
@@ -320,87 +245,53 @@
         </div>
     </div>
 
-    <!-- Header (Sticky Navigation) --><header id="header" class="sticky top-0 transition-all duration-300 shadow-xl" style="background-color: var(--color-lavender); backdrop-filter: blur(5px);">
+    <!-- Header -->
+    <header id="header" class="sticky top-0 transition-all duration-300 shadow-xl" style="backdrop-filter: blur(5px);">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <!-- Logo/Title and Icon -->
                 <div class="flex items-center">
-                    
-                    <!-- LOGO ICON: Links to home -->
                     <a href="javascript:void(0)" onclick="loadPage('home')" class="flex items-center hover:opacity-90 transition duration-300">
-                        <img id="logo-icon" src="images/logo_icon.jpg" alt="Toy Anime Fest Logo Icon" class="header-logo-icon rounded-full border-2 border-new-cyan" onerror="this.src='https://placehold.co/32x32/1A1A1A/00FFFF?text=LOGO'">
+                        <img id="logo-icon" src="images/logo_icon.jpg" alt="Logo" class="header-logo-icon rounded-full border-2 border-new-cyan" onerror="this.src='https://placehold.co/32x32/1A1A1A/00FFFF?text=LOGO'">
                     </a>
-
-                    <!-- MAIN LOGO TEXT -->
                     <a href="javascript:void(0)" onclick="loadPage('home')" class="logo-large font-extrabold text-dark hover:text-magenta transition duration-300 ml-4">
                         TOY ANIME <span class="text-magenta">FEST</span>
                     </a>
                 </div>
                 
-                <!-- Navigation Links (Desktop) -->
                 <nav class="hidden md:flex space-x-10 font-bold text-lg text-dark">
-                    <!-- Nav Link 1: ABOUT -->
-                    <a href="javascript:void(0)" onclick="loadPage('about')" class="nav-link hover:text-cyan transition duration-300 nav-link-dropdown flex items-center">
-                        ABOUT
-                    </a>
-                    
-                    <!-- Nav Link 2: EVENT Dropdown Container -->
+                    <a href="javascript:void(0)" onclick="loadPage('about')" class="nav-link hover:text-cyan transition duration-300">ABOUT</a>
                     <div class="relative group">
-                        <a href="javascript:void(0)" onclick="loadPage('events_schedule')" class="nav-link hover:text-cyan transition duration-300 nav-link-dropdown flex items-center">
-                            EVENT
-                        </a>
-                        <!-- Submenu links -->
-                        <div class="absolute dropdown-menu border-2 border-dark shadow-2xl min-w-[200px] mt-0 left-1/2 transform -translate-x-1/2 rounded-lg z-50" style="background-color: var(--color-bg-medium); color: var(--color-text-light);">
+                        <a href="javascript:void(0)" onclick="loadPage('events_schedule')" class="nav-link hover:text-cyan transition duration-300 flex items-center">EVENT</a>
+                        <div class="absolute dropdown-menu border-2 border-dark shadow-2xl min-w-[200px] mt-0 left-1/2 transform -translate-x-1/2 rounded-lg z-50" style="background-color: var(--color-bg-medium);">
                             <a href="javascript:void(0)" onclick="loadPage('tickets')" class="block px-4 py-3 text-sm text-light hover:bg-gray-800 hover:text-magenta transition duration-150 rounded-t-md">TICKETS</a>
                             <a href="javascript:void(0)" onclick="loadPage('events_schedule')" class="block px-4 py-3 text-sm text-light hover:bg-gray-800 hover:text-cyan transition duration-150">SCHEDULE</a>
                             <a href="javascript:void(0)" onclick="loadPage('competition')" class="block px-4 py-3 text-sm text-light hover:bg-gray-800 hover:text-orange transition duration-150">COMPETITION</a>
                             <a href="javascript:void(0)" onclick="loadPage('vendors')" class="block px-4 py-3 text-sm text-light hover:bg-gray-800 hover:text-green transition duration-150 rounded-b-md">VENDORS</a>
                         </div>
                     </div>
-                    
-                    <!-- Nav Link 3: MEDIA -->
-                    <a href="javascript:void(0)" onclick="loadPage('media')" class="nav-link hover:text-cyan transition duration-300 nav-link-dropdown flex items-center">
-                        MEDIA
-                    </a>
-                    
-                    <!-- Nav Link 4: NEWS -->
-                    <a href="javascript:void(0)" onclick="loadPage('news')" class="nav-link hover:text-cyan transition duration-300 nav-link-dropdown flex items-center">
-                        NEWS
-                    </a>
+                    <a href="javascript:void(0)" onclick="loadPage('media')" class="nav-link hover:text-cyan transition duration-300">MEDIA</a>
+                    <a href="javascript:void(0)" onclick="loadPage('news')" class="nav-link hover:text-cyan transition duration-300">NEWS</a>
                 </nav>
 
-                <!-- Tickets CTA Button --><a href="javascript:void(0)" onclick="loadPage('tickets')" class="hidden md:block bg-magenta text-dark px-6 py-3 rounded-full text-lg font-bold shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-105 cta-button border-2 border-magenta">
-                    TICKETS
-                </a>
-                
-                <!-- Mobile Menu Button -->
+                <a href="javascript:void(0)" onclick="loadPage('tickets')" class="hidden md:block bg-magenta text-dark px-6 py-3 rounded-full text-lg font-bold shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-105 border-2 border-magenta">TICKETS</a>
                 <button id="mobile-menu-btn" class="md:hidden text-dark hover:text-magenta focus:outline-none">
-                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
         </div>
         
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-400 pb-4" style="background-color: var(--color-lavender);">
+        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-400 pb-4">
             <nav class="flex flex-col space-y-3 p-4 font-bold text-lg text-dark">
-                <a href="javascript:void(0)" onclick="loadPage('about')" class="block hover:bg-gray-200 p-3 rounded transition duration-300">ABOUT</a>
-                
-                <!-- Mobile Event Dropdown -->
-                <div>
-                    <a href="javascript:void(0)" id="mobile-event-link" class="block hover:bg-gray-200 p-3 rounded transition duration-300 flex justify-between items-center">
-                        EVENT
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </a>
-                    <div id="mobile-event-submenu" class="hidden flex flex-col pl-6 rounded-b-lg border-l-2 border-dark" style="background-color: var(--color-bg-medium);">
-                        <a href="javascript:void(0)" onclick="loadPage('tickets')" class="block px-4 py-2 text-sm text-light hover:text-magenta transition duration-150">TICKETS</a>
-                        <a href="javascript:void(0)" onclick="loadPage('events_schedule')" class="block px-4 py-2 text-sm text-light hover:text-cyan transition duration-150">SCHEDULE</a>
-                        <a href="javascript:void(0)" onclick="loadPage('competition')" class="block px-4 py-2 text-sm text-light hover:text-orange transition duration-150">COMPETITION</a>
-                        <a href="javascript:void(0)" onclick="loadPage('vendors')" class="block px-4 py-2 text-sm text-light hover:text-green transition duration-150">VENDORS</a>
-                    </div>
+                <a href="javascript:void(0)" onclick="loadPage('about')" class="block hover:bg-gray-200 p-3 rounded">ABOUT</a>
+                <a href="javascript:void(0)" id="mobile-event-link" class="block hover:bg-gray-200 p-3 rounded flex justify-between items-center">EVENT <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></a>
+                <div id="mobile-event-submenu" class="hidden flex flex-col pl-6 rounded-b-lg border-l-2 border-dark" style="background-color: var(--color-bg-medium);">
+                    <a href="javascript:void(0)" onclick="loadPage('tickets')" class="block px-4 py-2 text-sm text-light">TICKETS</a>
+                    <a href="javascript:void(0)" onclick="loadPage('events_schedule')" class="block px-4 py-2 text-sm text-light">SCHEDULE</a>
+                    <a href="javascript:void(0)" onclick="loadPage('competition')" class="block px-4 py-2 text-sm text-light">COMPETITION</a>
+                    <a href="javascript:void(0)" onclick="loadPage('vendors')" class="block px-4 py-2 text-sm text-light">VENDORS</a>
                 </div>
-
-                <a href="javascript:void(0)" onclick="loadPage('media')" class="block hover:bg-gray-200 p-3 rounded transition duration-300">MEDIA</a>
-                <a href="javascript:void(0)" onclick="loadPage('news')" class="block hover:bg-gray-200 p-3 rounded transition duration-300">NEWS</a>
+                <a href="javascript:void(0)" onclick="loadPage('media')" class="block hover:bg-gray-200 p-3 rounded">MEDIA</a>
+                <a href="javascript:void(0)" onclick="loadPage('news')" class="block hover:bg-gray-200 p-3 rounded">NEWS</a>
                 <a href="javascript:void(0)" onclick="loadPage('tickets')" class="block bg-magenta text-dark text-center py-3 rounded-lg font-bold mt-4 shadow-lg border-2 border-magenta">TICKETS</a>
             </nav>
         </div>
@@ -410,24 +301,17 @@
         <!-- Initial Home Page Content will be loaded here by loadPage('home') -->
     </main>
 
-    <footer class="py-12 shadow-inner" style="background-color: var(--color-lavender); border-top: 3px solid var(--color-primary-cyan);">
+    <footer class="py-12 shadow-inner">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-dark">
-            <!-- Footer Mascot Icon -->
             <img id="footer-mascot" src="images/mascot_char.png" alt="Mascot" class="w-12 h-12 rounded-full mx-auto mb-4 border-2 border-magenta" onerror="this.src='https://placehold.co/48x48/1A1A1A/FF00FF?text=ICON'">
-
-            <!-- TOY ANIME FESTのロゴをダークに設定 -->
-            <h3 class="text-2xl font-bold mb-2 text-dark font-['Orbitron']">TOY ANIME FEST</h3>
-            
-            <!-- Contact Protocol: 新しいシアンを適用 -->
+            <h3 class="text-2xl font-bold mb-2 font-['Orbitron']">TOY ANIME FEST</h3>
             <p class="mb-6 text-new-cyan">Contact Protocol: <span class="underline">info@toyanimefest.com</span></p>
-            
             <div class="flex justify-center space-x-6 mb-6">
-                <!-- Social Media Icons -->
                 <a href="https://twitter.com/toy_animefest" target="_blank" class="text-gray-500 hover:text-new-cyan transition duration-300">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.052 17.513c-.156.417-.547.747-.999.747h-10.092c-.452 0-.843-.33-.999-.47-.156-.417-.184-.913-.075-1.349.421-1.758 1.487-3.238 2.87-4.225.267-.187.568-.31.884-.37.33-.064.673-.083 1.018-.083.345 0 .688.019 1.018.083.316.06.617.183.884.37 1.383.987 2.449 2.467 2.87 4.225.109.436.081.932-.075 1.349zM12 7c2.209 0 4 1.791 4 4s-1.791 4-4 4-4-1.791-4-4 1.791-4 4-4z"/></svg>
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.052 17.513c-.156.417-.547.747-.999.747h-10.092c-.452 0-.843-.33-.999-.47-.156-.417-.184-.913-.075-1.349.421-1.758 1.487-3.238 2.87-4.225.267-.187.568-.31.884-.37.33-.064.673-.083 1.018-.083.345 0 .688.019 1.018.083.316.06.617.183.884.37 1.383.987 2.449 2.467 2.87 4.225.109.436.081.932-.075 1.349zM12 7c2.209 0 4 1.791 4 4s-1.791 4-4 4-4-1.791-4-4 1.791-4 4-4z"/></svg>
                 </a>
                 <a href="https://www.instagram.com/toy_animefest/" target="_blank" class="text-gray-500 hover:text-magenta transition duration-300">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.27.058 1.83.249 2.27.426.44.178.78.412 1.12.75 1.06 1.06 1.39 2.54 1.39 4.25v6.592c0 1.71-.33 3.19-1.39 4.25-.34.338-.68.572-1.12.75-.44.177-1 .368-2.27.426-1.266.058-1.646.07-4.85.07-3.204 0-3.584-.012-4.85-.07-1.27-.058-1.83-.249-2.27-.426-.44-.178-.78-.412-1.12-.75-1.06-1.06-1.39-2.54-1.39-4.25V7.636c0-1.71.33-3.19 1.39-4.25.34-.338.68-.572 1.12-.75.44-.177 1-.368 2.27-.426 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.25 0-3.668.014-4.949.072-1.32.06-2.25.267-3.04.582-1.07.419-1.85 1.082-2.58 1.812-.73.73-1.39 1.51-1.81 2.58-.315.79-.522 1.72-.58 3.04-.058 1.28-.072 1.697-.072 4.95s.014 3.668.072 4.95c.058 1.32.265 2.25.58 3.04.42 1.07 1.08 1.85 1.81 2.58.73.73 1.51 1.39 2.58 1.81.79.315 1.72.522 3.04.58 1.28.058 1.697.072 4.95.072s3.668-.014 4.95-.072c1.32-.058 2.25-.265 3.04-.58 1.07-.42 1.85-1.08 2.58-1.81.73-.73 1.51-1.39 2.58-1.81.79-.315 1.72-.522 3.04-.58-1.28-.058-1.697-.072-4.95-.072zm0 5.836c-2.316 0-4.197 1.88-4.197 4.197s1.88 4.197 4.197 4.197 4.197-1.88 4.197-4.197-1.88-4.197-4.197-4.197zm0 6.836c-1.455 0-2.639-1.184-2.639-2.639s1.184-2.639 2.639-2.639 2.639 1.184 2.639 2.639-1.184 2.639-2.639 2.639zm3.93-7.53c0 .546-.443.989-.989.989s-.989-.443-.989-.989.443-.989.989-.989.989.443.989.989z"/></svg>
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.27.058 1.83.249 2.27.426.44.178.78.412 1.12.75 1.06 1.06 1.39 2.54 1.39 4.25v6.592c0 1.71-.33 3.19-1.39 4.25-.34.338-.68.572-1.12.75-.44.177-1 .368-2.27.426-1.266.058-1.646.07-4.85.07-3.204 0-3.584-.012-4.85-.07-1.27-.058-1.83-.249-2.27-.426-.44-.178-.78-.412-1.12-.75-1.06-1.06-1.39-2.54-1.39-4.25V7.636c0-1.71.33-3.19 1.39-4.25.34-.338.68-.572 1.12-.75.44-.177 1-.368 2.27-.426 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.25 0-3.668.014-4.949.072-1.32.06-2.25.267-3.04.582-1.07.419-1.85 1.082-2.58 1.812-.73.73-1.39 1.51-1.81 2.58-.315.79-.522 1.72-.58 3.04-.058 1.28-.072 1.697-.072 4.95s.014 3.668.072 4.95c.058 1.32.265 2.25.58 3.04.42 1.07 1.08 1.85 1.81 2.58.73.73 1.51 1.39 2.58 1.81.79.315 1.72.522 3.04.58 1.28.058 1.697.072 4.95.072s3.668-.014 4.95-.072c1.32-.058 2.25-.265 3.04-.58 1.07-.42 1.85-1.08 2.58-1.81.73-.73 1.51-1.39 2.58-1.81.79-.315 1.72-.522 3.04-.58-1.28-.058-1.697-.072-4.95-.072zm0 5.836c-2.316 0-4.197 1.88-4.197 4.197s1.88 4.197 4.197 4.197 4.197-1.88 4.197-4.197-1.88-4.197-4.197-4.197zm0 6.836c-1.455 0-2.639-1.184-2.639-2.639s1.184-2.639 2.639-2.639 2.639 1.184 2.639 2.639-1.184 2.639-2.639 2.639zm3.93-7.53c0 .546-.443.989-.989.989s-.989-.443-.989-.989.443-.989.989-.989.989.443.989.989z"/></svg>
                 </a>
                 <a href="https://www.facebook.com/profile.php?id=61583080624548" target="_blank" class="text-gray-500 hover:text-new-cyan transition duration-300">
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.5c-.75 0-1.5.75-1.5 1.5v1.5h3l-.5 3h-2.5v7h-3v-7h-2v-3h2v-2c0-1.7 1.3-3 3-3h2v2z"/></svg>
@@ -454,15 +338,11 @@
         const pageContent = {
             'home': `
                 <!-- Hero Section (Center Title) -->
-                <!-- 修正: 最小の高さを設定し、ミッションセクションを「折り目」の下へ押し出す -->
                 <section id="hero-home" class="relative overflow-hidden min-h-[calc(100vh-5rem)] flex flex-col justify-center items-center text-center px-4" style="background-color: var(--color-bg-dark);">
                     <div class="max-w-7xl mx-auto relative z-10 flex flex-col items-center">
                         <div class="inline-flex flex-col items-center scroll-reveal" style="transition-delay: 0.1s;">
-                            <!-- ANIME (Verseとほぼ同じサイズ、同じ色で上に配置) -->
                             <span class="hero-title text-7xl md:text-8xl lg:text-9xl leading-none mb-1">ANIME</span>
-                            <!-- VERSE (メインタイトル) -->
                             <h1 class="hero-title text-7xl md:text-8xl lg:text-9xl leading-none">VERSE</h1>
-                            <!-- TOY ANIME FEST (Verseの下に中央揃え) -->
                             <div class="bg-magenta px-6 py-2 mt-6 border-2 border-magenta rounded-none shadow-[0_0_15px_rgba(255,0,255,0.4)]">
                                 <p class="hero-subtitle text-lg md:text-xl lg:text-2xl font-black text-dark tracking-[0.3em] uppercase">
                                     ーTOY ANIME FESTー
@@ -472,9 +352,9 @@
                     </div>
                 </section>
 
-                <!-- Mission Section with Mascot Beside Text (New Layout) -->
-                <section class="py-20 bg-dark border-t-4 border-b-4 border-cyan">
-                    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
+                <!-- Mission Section: Background set to Image with Overlay (Swapped) -->
+                <section class="image-overlay-bg py-24 border-t-4 border-b-4 border-cyan overflow-hidden">
+                    <div class="overlay-content max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
                         <!-- Text Area -->
                         <div class="flex-1 scroll-reveal" style="transition-delay: 0.2s;">
                             <h2 class="text-3xl md:text-4xl font-black text-magenta mb-6 uppercase font-['Orbitron'] border-l-8 border-magenta pl-6">WHERE ANIME WORLDS COME TO LIFE.</h2>
@@ -498,13 +378,13 @@
                     </div>
                 </section>
 
-                <!-- CTA Section with Darkened Image Background (Enhanced Design) -->
-                <section class="cta-image-bg py-32 text-center">
-                    <div class="cta-content max-w-4xl mx-auto px-4 scroll-reveal">
-                        <h2 class="text-4xl md:text-5xl font-black text-white mb-6 uppercase font-['Orbitron'] tracking-tighter">READY FOR DEPLOYMENT?</h2>
-                        <p class="text-white text-xl md:text-2xl mb-12 font-medium opacity-90">Join the mission and secure your access protocols for the upcoming Toy Anime Fest events.</p>
-                        <!-- Tickets CTA - White Background -->
-                        <a href="javascript:void(0)" onclick="loadPage('tickets')" class="bg-white text-dark px-12 py-5 rounded-full text-2xl font-black shadow-[0_0_25px_rgba(255,255,255,0.3)] hover:shadow-white transition duration-300 transform hover:scale-110 border-2 border-white">
+                <!-- CTA Section: Background set to Lavender (Swapped) -->
+                <section class="py-32 text-center" style="background-color: var(--color-lavender);">
+                    <div class="max-w-4xl mx-auto px-4 scroll-reveal">
+                        <h2 class="text-4xl md:text-5xl font-black text-dark mb-6 uppercase font-['Orbitron'] tracking-tighter">READY FOR DEPLOYMENT?</h2>
+                        <p class="text-dark text-xl md:text-2xl mb-12 font-bold opacity-90">Join the mission and secure your access protocols for the upcoming Toy Anime Fest events.</p>
+                        <!-- Tickets CTA - White Background as requested -->
+                        <a href="javascript:void(0)" onclick="loadPage('tickets')" class="bg-white text-dark px-12 py-5 rounded-full text-2xl font-black shadow-[0_0_25px_rgba(255,255,255,0.2)] hover:shadow-lg transition duration-300 transform hover:scale-110 border-2 border-white">
                             TICKETS
                         </a>
                     </div>
@@ -706,7 +586,7 @@
                                     <p class="text-5xl text-magenta mr-4 font-['Orbitron']">TT</p>
                                     <p class="text-2xl font-bold text-light">/toyanimefest_2026</p>
                                 </a>
-                                <!-- YouTube: Border changed to white as requested -->
+                                <!-- YouTube: Border set to white as requested -->
                                 <a href="javascript:void(0)" onclick="showMessage('YouTube channel is coming soon.')" class="p-6 bg-medium border-4 border-white rounded-xl flex items-center justify-center hover:scale-[1.02] transition duration-300">
                                     <p class="text-5xl text-white mr-4 font-['Orbitron']">YT</p>
                                     <p class="text-2xl font-bold text-white">Coming Soon</p>
@@ -749,86 +629,61 @@
 
 
         // --- JAVASCRIPT LOGIC ---
-        
-        // Function to dynamically load and replace content
         function loadPage(pageName) {
             const contentArea = document.getElementById('content-area');
             const newContent = pageContent[pageName];
-
             if (newContent) {
-                // Scroll to top of the content area for a clean page transition feel
                 window.scrollTo(0, 0); 
-
-                // Use fade transition
                 contentArea.style.opacity = 0;
                 setTimeout(() => {
                     contentArea.innerHTML = newContent;
                     contentArea.style.opacity = 1;
-                    setupScrollReveal(); // Re-initialize scroll reveal for new content
-                }, 300); // Wait for fade out
-                
+                    setupScrollReveal(); 
+                }, 300); 
             } else if (pageName === 'home') {
                  window.location.reload();
             }
         }
         
-        // Initial page load
         document.addEventListener('DOMContentLoaded', () => {
             loadPage('home');
-            
-            // --- Set Image Sources for Header/Footer (Hardcoded working path) ---
-            const IMAGE_PATH_MASCOT = "images/mascot_char.png"; // マスコット
-            const IMAGE_PATH_ICON = "images/logo_icon.jpg"; // ロゴアイコン
-
-            // 1. Header Icon
             const headerIcon = document.getElementById('logo-icon');
-            if (headerIcon) headerIcon.src = IMAGE_PATH_ICON;
-
-            // 2. Footer Mascot
+            if (headerIcon) headerIcon.src = "images/logo_icon.jpg";
             const footerMascot = document.getElementById('footer-mascot');
-            if (footerMascot) footerMascot.src = IMAGE_PATH_MASCOT;
+            if (footerMascot) footerMascot.src = "images/mascot_char.png";
         });
 
-        /* --- General Message Box for CTA Confirmation --- */
-        // NOTE: The showMessage function is kept for non-social media CTA buttons (like TICKETS/RULES)
         function showMessage(text) {
             const messageText = document.getElementById('confirmation-text');
             const messageBox = document.getElementById('message-box');
             const messageContentBox = document.getElementById('message-content-box');
-            
             messageText.textContent = text;
             messageBox.classList.remove('hidden');
             messageBox.classList.add('flex');
-            
             messageContentBox.classList.remove('scale-95');
             messageContentBox.classList.add('scale-100');
             document.body.classList.add('overflow-hidden');
-            
             document.getElementById('mobile-menu').classList.add('hidden');
         }
 
         function closeMessage() {
             const messageBox = document.getElementById('message-box');
             const messageContentBox = document.getElementById('message-content-box');
-            
             messageContentBox.classList.remove('scale-100');
             messageContentBox.classList.add('scale-95');
-
             setTimeout(() => {
                 messageBox.classList.remove('flex');
                 messageBox.classList.add('hidden');
-                document.body.classList.remove('overflow-hidden'); // Re-enable scroll
+                document.body.classList.remove('overflow-hidden');
             }, 300);
         }
         
-        /* --- Mobile Menu/Dropdown Logic --- */
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
             document.body.classList.toggle('overflow-hidden');
         });
         
-        // Handle Mobile Event Dropdown Click
         const mobileEventLink = document.getElementById('mobile-event-link');
         if (mobileEventLink) {
             mobileEventLink.addEventListener('click', function(e) {
@@ -837,7 +692,6 @@
             });
         }
         
-        // Hide mobile menu on link click (and loads new page)
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 document.getElementById('mobile-menu').classList.add('hidden');
@@ -845,26 +699,10 @@
             });
         });
 
-        /* --- Scroll Reveal Logic --- */
-        const observerOptions = {
-            root: null,
-            rootMargin: "0px",
-            threshold: 0.1
-        };
-
-        let currentObserver = null;
-
         function setupScrollReveal() {
-             // Disconnect previous observer if exists
-            if (currentObserver) {
-                currentObserver.disconnect();
-            }
-
             const elements = document.querySelectorAll('.scroll-reveal');
-
-            if (elements.length === 0) return;
-
-            currentObserver = new IntersectionObserver((entries, observer) => {
+            const observerOptions = { root: null, rootMargin: "0px", threshold: 0.1 };
+            const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
@@ -872,16 +710,7 @@
                     }
                 });
             }, observerOptions);
-
-            elements.forEach(el => {
-                 const rect = el.getBoundingClientRect();
-                 // Check if element is already in view (for page refresh/initial load)
-                 if (rect.top <= (window.innerHeight || document.documentElement.clientHeight) + 50) {
-                     el.classList.add('is-visible');
-                 } else {
-                     currentObserver.observe(el);
-                 }
-            });
+            elements.forEach(el => observer.observe(el));
         }
 
         document.addEventListener('DOMContentLoaded', setupScrollReveal);
