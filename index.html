@@ -454,8 +454,9 @@
         const pageContent = {
             'home': `
                 <!-- Hero Section (Center Title) -->
-                <section id="hero-home" class="relative overflow-hidden pt-48 pb-20 text-center" style="background-color: var(--color-bg-dark);">
-                    <div class="max-w-7xl mx-auto px-4 relative z-10 flex flex-col items-center">
+                <!-- 修正: 最小の高さを設定し、ミッションセクションを「折り目」の下へ押し出す -->
+                <section id="hero-home" class="relative overflow-hidden min-h-[calc(100vh-5rem)] flex flex-col justify-center items-center text-center px-4" style="background-color: var(--color-bg-dark);">
+                    <div class="max-w-7xl mx-auto relative z-10 flex flex-col items-center">
                         <div class="inline-flex flex-col items-center scroll-reveal" style="transition-delay: 0.1s;">
                             <!-- ANIME (Verseとほぼ同じサイズ、同じ色で上に配置) -->
                             <span class="hero-title text-7xl md:text-8xl lg:text-9xl leading-none mb-1">ANIME</span>
@@ -748,63 +749,86 @@
 
 
         // --- JAVASCRIPT LOGIC ---
+        
+        // Function to dynamically load and replace content
         function loadPage(pageName) {
             const contentArea = document.getElementById('content-area');
             const newContent = pageContent[pageName];
+
             if (newContent) {
+                // Scroll to top of the content area for a clean page transition feel
                 window.scrollTo(0, 0); 
+
+                // Use fade transition
                 contentArea.style.opacity = 0;
                 setTimeout(() => {
                     contentArea.innerHTML = newContent;
                     contentArea.style.opacity = 1;
-                    setupScrollReveal(); 
-                }, 300); 
+                    setupScrollReveal(); // Re-initialize scroll reveal for new content
+                }, 300); // Wait for fade out
+                
             } else if (pageName === 'home') {
                  window.location.reload();
             }
         }
         
+        // Initial page load
         document.addEventListener('DOMContentLoaded', () => {
             loadPage('home');
-            const IMAGE_PATH_MASCOT = "images/mascot_char.png";
-            const IMAGE_PATH_ICON = "images/logo_icon.jpg";
+            
+            // --- Set Image Sources for Header/Footer (Hardcoded working path) ---
+            const IMAGE_PATH_MASCOT = "images/mascot_char.png"; // マスコット
+            const IMAGE_PATH_ICON = "images/logo_icon.jpg"; // ロゴアイコン
+
+            // 1. Header Icon
             const headerIcon = document.getElementById('logo-icon');
             if (headerIcon) headerIcon.src = IMAGE_PATH_ICON;
+
+            // 2. Footer Mascot
             const footerMascot = document.getElementById('footer-mascot');
             if (footerMascot) footerMascot.src = IMAGE_PATH_MASCOT;
         });
 
+        /* --- General Message Box for CTA Confirmation --- */
+        // NOTE: The showMessage function is kept for non-social media CTA buttons (like TICKETS/RULES)
         function showMessage(text) {
             const messageText = document.getElementById('confirmation-text');
             const messageBox = document.getElementById('message-box');
             const messageContentBox = document.getElementById('message-content-box');
+            
             messageText.textContent = text;
             messageBox.classList.remove('hidden');
             messageBox.classList.add('flex');
+            
             messageContentBox.classList.remove('scale-95');
             messageContentBox.classList.add('scale-100');
             document.body.classList.add('overflow-hidden');
+            
             document.getElementById('mobile-menu').classList.add('hidden');
         }
 
         function closeMessage() {
             const messageBox = document.getElementById('message-box');
             const messageContentBox = document.getElementById('message-content-box');
+            
             messageContentBox.classList.remove('scale-100');
             messageContentBox.classList.add('scale-95');
+
             setTimeout(() => {
                 messageBox.classList.remove('flex');
                 messageBox.classList.add('hidden');
-                document.body.classList.remove('overflow-hidden');
+                document.body.classList.remove('overflow-hidden'); // Re-enable scroll
             }, 300);
         }
         
+        /* --- Mobile Menu/Dropdown Logic --- */
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
             document.body.classList.toggle('overflow-hidden');
         });
         
+        // Handle Mobile Event Dropdown Click
         const mobileEventLink = document.getElementById('mobile-event-link');
         if (mobileEventLink) {
             mobileEventLink.addEventListener('click', function(e) {
@@ -813,6 +837,7 @@
             });
         }
         
+        // Hide mobile menu on link click (and loads new page)
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 document.getElementById('mobile-menu').classList.add('hidden');
@@ -820,10 +845,26 @@
             });
         });
 
+        /* --- Scroll Reveal Logic --- */
+        const observerOptions = {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0.1
+        };
+
+        let currentObserver = null;
+
         function setupScrollReveal() {
+             // Disconnect previous observer if exists
+            if (currentObserver) {
+                currentObserver.disconnect();
+            }
+
             const elements = document.querySelectorAll('.scroll-reveal');
-            const observerOptions = { root: null, rootMargin: "0px", threshold: 0.1 };
-            const observer = new IntersectionObserver((entries) => {
+
+            if (elements.length === 0) return;
+
+            currentObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
@@ -831,7 +872,16 @@
                     }
                 });
             }, observerOptions);
-            elements.forEach(el => observer.observe(el));
+
+            elements.forEach(el => {
+                 const rect = el.getBoundingClientRect();
+                 // Check if element is already in view (for page refresh/initial load)
+                 if (rect.top <= (window.innerHeight || document.documentElement.clientHeight) + 50) {
+                     el.classList.add('is-visible');
+                 } else {
+                     currentObserver.observe(el);
+                 }
+            });
         }
 
         document.addEventListener('DOMContentLoaded', setupScrollReveal);
